@@ -17,16 +17,21 @@ This exchange middleware is used to by clients to request an access token by usi
 
 ##### Key Generation Tips
 generate private key
+```
 openssl genrsa -out private.pem 1024 
-
+```
 abstract public key
+```
 openssl rsa -in private.pem -out public.pem -outform PEM -pubout 
-
+```
 sign the data
+```
 signing data: echo -n "data-to-sign" | openssl dgst -RSA-SHA256 -sign private.pem > signed 
-
+```
 convert the signed file (binary) into base64 to be sent.
+```
 base64 signed
+```
 
 ```javascript
 var jwtBearer = require('oauth2orize-jwt-bearer').Exchange;
